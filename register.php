@@ -63,8 +63,10 @@ header("Location: index.php");
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Register - SB Admin</title>
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="css/style1.css" rel="stylesheet" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
     </head>
     <body class="bg-primary">
         <div id="layoutAuthentication">
@@ -79,56 +81,54 @@ header("Location: index.php");
                                         <form action="" method="post">
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" name="firstname" />
-                                                        <label for="inputFirstName">First name</label>
+                                                    <div class="input-group mb-3">
+                                                        
+                                                        <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" name="firstname" aria-describedby="basic-addon1"/>
                                                     </div>
+                                                    
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="form-floating">
-                                                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" name="lastname"/>
-                                                        <label for="inputLastName">Last name</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row mb-3">
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" name="email"/>
-                                                        <label for="inputEmail">Email address</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <select name="user_role" id="" class="form-select" aria-label="Default select example">
-                                                        <option value="subsriber">Select option</option>
-                                                        <option value="admin">admin</option>
-                                                        <option value="subsriber">subsriber</option>
-                                                        </select>
+                                                    
+                                                    <div class="input-group mb-3">
+                                                        <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" name="lastname" aria-describedby="basic-addon1"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             
                                             <div class="row mb-3">
                                                 <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" name="password"/>
-                                                        <label for="inputPassword">Password</label>
+                                                    <div class="input-group mb-3">
+                                                        <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" name="email" aria-describedby="basic-addon1"/>
                                                     </div>
+                                                    
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="form-floating mb-3 mb-md-0">
-                                                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" name="confirm_password"/>
-                                                        <label for="inputPasswordConfirm">Confirm Password</label>
+                                                    <div class="input-group mb-3">
+                                                        <select name="user_role" id="" class="form-control" aria-label="Default select example" aria-describedby="basic-addon1">
+                                                            <option value="subsriber">Select option</option>
+                                                            <option value="admin">admin</option>
+                                                            <option value="subsriber">user</option>
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="input-group mb-3">
+                                                        <input class="form-control" id="inputPassword" type="password" placeholder="Create a password" name="password" aria-describedby="basic-addon1"/>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="col-md-6">
+                                                    
+                                                    <div class="input-group mb-3">
+                                                        <input class="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" name="confirm_password" aria-describedby="basic-addon1"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="mt-4 mb-0">
-                                                <div class="d-grid">
-                                                    <input class="btn btn-primary btn-block" type="submit" name="register" value="submit">
-                                                </div>
+                                                <div class="d-grid"><input class="btn btn-primary btn-block" type="submit" name="register" value="submit"></div>
                                             </div>
-                                            
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
@@ -142,7 +142,9 @@ header("Location: index.php");
             </div>
             
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="js/js.js"></script>
     </body>
 </html>

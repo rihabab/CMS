@@ -11,16 +11,19 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link href="css/style1.css" rel="stylesheet" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
     </head>
-    <body class="sb-nav-fixed">
-    <?php include 'includes/navigation.php';?>
-        <div id="layoutSidenav">
-            <?php include 'includes/sidenav.php';?>
-            <div id="layoutSidenav_content">
 
+    <body class="sb-nav-fixed">
+    <nav style="height: 100vh;">
+        <?php include 'includes/navigation.php';?>
+        <div style="display: flex; flex-direction:row; height:auto;"> 
+            <?php include 'includes/sidenav.php';?>
+
+            <div class="content" id="content">
             <?php 
                     
                     if(isset($_GET['source'])){
@@ -30,15 +33,19 @@
                     }                
                    switch($source){
                        case 'view';
-                       include 'pages/view_all_suppliers.php';
+                       include 'pageSupplier/view_all_suppliers.php';
                        break;
                       
                        case 'add';
-                       include 'pages/add_supplier.php';
+                       include 'pageSupplier/add_supplier.php';
                        break;
 
                        case 'edit';
-                       include 'pages/edit_supplier.php';
+                       include 'pageSupplier/edit_supplier2.php';
+                       break;
+
+                       case 'view_supplier';
+                       include 'pageSupplier/profile_supplier.php';
                        break;
                    
                    /*
@@ -51,37 +58,13 @@
                                        
                                        
                    ?>
-
-
-
-
-
-
-                <!-- Footer -->
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-
-
-
-
-
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+    </nav>
+    
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="js/js.js"></script>
     </body>
 </html>

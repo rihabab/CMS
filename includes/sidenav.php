@@ -1,5 +1,74 @@
 
+<nav id="sidebar" class="sidebar" >
+    <ul class="list-unstyled components" >
+        <li class="active" style="margin-top: 50px;">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-shopping-cart" aria-hidden="true" style="padding:10px;"></i>Fournisseurs</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="suppliers.php?source=view">Afficher tous les fournisseurs</a>
+                </li>
+                <li>
+                    <a href="suppliers.php?source=add">Ajouter un fournisseur</a>
+                </li>
+                
+            </ul>
+        </li>
+        <li class="active" style="margin-top: 10px;">
+            <a href="#Submenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-users" aria-hidden="true"  style="padding:10px;"></i>Clients</a>
+            <ul class="collapse list-unstyled" id="Submenu">
+                <li>
+                    <a href="clients.php?source=view">Afficher tous les clients</a>
+                </li>
+                <li>
+                    <a href="clients.php?source=add">Ajouter un Client</a>
+                </li>
+                
+            </ul>
+        </li>
+        <li class="active" style="margin-top: 10px;">
+            <a href="#home" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cubes" aria-hidden="true" style="padding:10px;"></i>Stock</a>
+            <ul class="collapse list-unstyled" id="home">
+                <li>
+                    <a href="stock.php?source=view">Afficher tous les produits</a>
+                </li>
+                <li>
+                    <a href="stock.php?source=add">Ajouter un produit</a>
+                </li>
+                
+            </ul>
+        </li>
+        <li class="active" style="margin-top: 10px;">
+            <a href="#hoenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-usd" aria-hidden="true" style="padding-left:10px;"></i><i class="fa fa-usd" aria-hidden="true" style="padding-right:10px;"></i>Factures</a>
+            <ul class="collapse list-unstyled" id="hoenu">
+                <li>
+                    <a href="facture.php?source=view">Afficher toutes les factures</a>
+                </li>
+                <li>
+                    <a href="facture.php?source=add">Ajouter une facture</a>
+                </li>
+                
+            </ul>
+        </li>
+        <li class="active" style="margin-top: 10px;">
+            <a href="#h" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-shopping-cart" aria-hidden="true" style="padding:10px;"></i>Devis</a>
+            <ul class="collapse list-unstyled" id="h">
+                <li>
+                    <a href="devis.php?source=view">Afficher tous les devis</a>
+                </li>
+                <li>
+                    <a href="devis.php?source=add">Ajouter un devis</a>
+                </li>
+                
+            </ul>
+        </li>
+        
+        
+    </ul>
 
+    
+</nav>
+
+<!-- 
 <div id="layoutSidenav_nav" >
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
@@ -12,7 +81,7 @@
                 
 
 
-                <!-- Fournisseurs -->
+
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsFournisseurs" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
                     Fournisseurs
@@ -26,7 +95,7 @@
                 </div>
 
 
-                <!-- Clients -->
+
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsClients" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa fa-users" aria-hidden="true"></i></div>
                     Clients
@@ -42,7 +111,7 @@
 
 
 
-                <!-- Stocks -->
+
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsStocks" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fa fa-cubes" aria-hidden="true"></i></div>
                     Stocks
@@ -59,7 +128,7 @@
 
 
 
-                <!-- Fournisseurs -->
+     
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Fournisseurs
@@ -76,7 +145,7 @@
 
 
 
-                <!-- Pages for later use -->
+        
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Pages
@@ -113,7 +182,7 @@
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
-            <?php echo $user_lastname . " " . $user_firstname?>
+            <?php //echo $user_lastname . " " . $user_firstname?>
         </div>
     </nav>
-</div>
+</div> -->

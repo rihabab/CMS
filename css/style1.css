@@ -1,0 +1,531 @@
+*{
+    padding: 0em;
+}
+
+:root{
+    --h:8%;
+
+}
+
+
+
+
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #e4dbdb;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+
+a,
+a:hover,
+a:focus {
+    color:#ddd;
+    text-decoration: none;
+    transition: all 0.3s;
+    
+}
+
+
+/*
+.sidebar{
+    position: fixed;
+}
+*/
+#top{
+    height:70px;
+    z-index: 100;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+#sidebar{
+    height: 100vh;
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+li a {
+    color: white;
+}
+
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background:#1f1e1e;
+    color: #e63737;
+    transition: all 0.3s;
+    
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+#content.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #242222;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+
+#sidebar ul li a {
+    height: 60px;
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #1f1e1e;
+    background: #fff;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #1f1e1e;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #1f1e1e;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #ce2b2b;
+    color: #eff1f7;
+}
+
+a.article,
+a.article:hover {
+    background:#1f1e1e !important;
+    color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+.content{
+    width:1600px; 
+    margin-top:60px;
+    margin-left:250px;
+
+}
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    .content {
+        margin-left: 0px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+#sidebarfoot{
+    margin-top: 175%;
+}
+
+.active{
+    border-width: 0%;
+}
+
+
+/** END: Non Openmrs CSS **/
+div.omrs-input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+    width: 20.4375rem;
+  }
+  
+  /* Input*/
+  .omrs-input-underlined > input,
+  .omrs-input-filled > input {
+      border: none;
+      border-bottom: 0.125rem solid var(--omrs-color-ink-medium-contrast);
+      width: 100%;
+      height: 2rem;
+      font-size: 1.0625rem;
+      padding-left: 0.875rem;
+      line-height: 147.6%;
+      padding-top: 0.825rem;
+      padding-bottom: 0.5rem;
+  }
+  
+  .omrs-input-underlined > input:focus,
+  .omrs-input-filled > input:focus {
+      outline: none;
+  }
+  
+  .omrs-input-underlined > .omrs-input-label,
+  .omrs-input-filled > .omrs-input-label {
+      position: absolute;
+      top: 0.9375rem;
+      left: 0.875rem;
+      line-height: 147.6%;
+      color: var(--omrs-color-ink-medium-contrast);
+      transition: top .2s;
+  }
+  
+  .omrs-input-underlined > svg,
+  .omrs-input-filled > svg {
+      position: absolute;
+      top: 0.9375rem;
+      right: 0.875rem;
+      fill: var(--omrs-color-ink-medium-contrast);
+  }
+  
+  .omrs-input-underlined > .omrs-input-helper,
+  .omrs-input-filled > .omrs-input-helper {
+      font-size: 0.9375rem;
+      color: var(--omrs-color-ink-medium-contrast);
+      letter-spacing: 0.0275rem;
+      margin: 0.125rem 0.875rem;
+  }
+  
+  .omrs-input-underlined > input:hover,
+  .omrs-input-filled > input:hover {
+      background: var(--omrs-color-interaction-minus-two);
+      border-color: var(--omrs-color-ink-high-contrast);
+  }
+  
+  .omrs-input-underlined > input:focus + .omrs-input-label,
+  .omrs-input-underlined > input:valid + .omrs-input-label,
+  .omrs-input-filled > input:focus + .omrs-input-label,
+  .omrs-input-filled > input:valid + .omrs-input-label {
+      top: 0;
+      font-size: 0.9375rem;
+      margin-bottom: 32px;;
+  }
+  
+  .omrs-input-underlined:not(.omrs-input-danger) > input:focus + .omrs-input-label,
+  .omrs-input-filled:not(.omrs-input-danger) > input:focus + .omrs-input-label {
+      color: var(--omrs-color-interaction);
+  }
+  
+  .omrs-input-underlined:not(.omrs-input-danger) > input:focus,
+  .omrs-input-filled:not(.omrs-input-danger) > input:focus {
+      border-color: var(--omrs-color-interaction);
+  }
+  
+  .omrs-input-underlined:not(.omrs-input-danger) > input:focus ~ svg,
+  .omrs-input-filled:not(.omrs-input-danger) > input:focus ~ svg {
+      fill: var(--omrs-color-ink-high-contrast);
+  }
+  
+  /** DISABLED **/
+  
+  .omrs-input-underlined > input:disabled {
+      background: var(--omrs-color-bg-low-contrast);
+      cursor: not-allowed;
+  }
+  
+  .omrs-input-underlined > input:disabled + .omrs-input-label,
+  .omrs-input-underlined > input:disabled ~ .omrs-input-helper{
+      color: var(--omrs-color-ink-low-contrast);
+  }
+  
+  .omrs-input-underlined > input:disabled ~ svg {
+      fill: var(--omrs-color-ink-low-contrast);
+  }
+  
+  
+  /** DANGER **/
+  
+  .omrs-input-underlined.omrs-input-danger > .omrs-input-label, .omrs-input-underlined.omrs-input-danger > .omrs-input-helper,
+  .omrs-input-filled.omrs-input-danger > .omrs-input-label, .omrs-input-filled.omrs-input-danger > .omrs-input-helper{
+      color: var(--omrs-color-danger);
+  }
+  
+  .omrs-input-danger > svg {
+      fill: var(--omrs-color-danger);
+  }
+  
+  .omrs-input-danger > input {
+      border-color: var(--omrs-color-danger);
+  }
+  
+  .omrs-input-underlined > input {
+      background: var(--omrs-color-bg-high-contrast);
+  }
+  .omrs-input-filled > input {
+      background: var(--omrs-color-bg-low-contrast);
+  }
+
+
+
+  /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .toggle-switch input {
+    display: none;
+  }
+  
+  .slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: .4s;
+    
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  
+/* The Modal (background) */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
