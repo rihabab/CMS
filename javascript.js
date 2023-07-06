@@ -135,3 +135,9 @@ function printFile(source) {
   w = window.open('template.php?f_id='+source);
   w.print();
 }
+
+
+function printFiledev(source) {
+  w = window.open('templatedev.php?d_id='+source);
+  w.print();
+}

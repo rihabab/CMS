@@ -22,16 +22,12 @@ $options->setChroot(__DIR__);
 $options->setIsRemoteEnabled(true);
 
 
-$name = $_POST["facture_part_nom"];
-$ice = $_POST["facture_part_ice"];
-
-
 $dompdf=new Dompdf($options);
 
 
-if(isset($_GET["f_id"])){
-    $f_id=$_GET["f_id"];
-    $html = file_get_contents("http://localhost/stage/template.php?f_id=$f_id");
+if(isset($_GET["d_id"])){
+    $d_id=$_GET["d_id"];
+    $html = file_get_contents("http://localhost/stage/templatedev.php?d_id=$d_id");
 }
 
 

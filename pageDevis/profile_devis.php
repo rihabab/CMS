@@ -128,20 +128,6 @@ if (isset($_POST['create_facture'])) {
 
     <form action="" method="post" enctype="multipart/form-data">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="row mb-3">
             <div class="col-md-5">
                 <label for="post_tags">Fournisseur</label>
@@ -374,6 +360,15 @@ if (isset($_POST['create_facture'])) {
         <!-- Button trigger modal -->
         <div class="form-group">
             <input class="btn btn-primary" type="submit" name="create_facture" value="Generer une facture" data-toggle="modal" data-target="#exampleModal">
+        </div>
+
+        <div class="form-group">
+        <button onclick="printFiledev(<?php echo $the_devis_id?>)" class="btn btn-primary">Print</button>
+
+        </div>
+        <div class="form-group">
+            <a href="pdf_dev.php?d_id=<?php echo $the_devis_id; ?>" class="btn btn-primary" type="submit"  name="genpdf"value="Génerer">Génerer</a>
+
         </div>
 
 
