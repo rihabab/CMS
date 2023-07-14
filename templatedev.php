@@ -5,8 +5,8 @@
 <?php
 
 if (isset($_GET['d_id'])) {
-    $part_adresse="undef";
-    $part_city="undef";
+    $part_adresse = "undef";
+    $part_city = "undef";
     $the_devis_id = $_GET['d_id'];
     $query = "SELECT * FROM devis WHERE devis_id='$the_devis_id'";
     $get_devis_query = mysqli_query($connection, $query);
@@ -15,35 +15,28 @@ if (isset($_GET['d_id'])) {
         $devis_supplier_name = $row['devis_supplier_name'];
         $devis_supplier_ice = $row['devis_supplier_ice'];
         $devis_date = $row['devis_date'];
-        
     }
 
     $query = "SELECT * FROM suppliers WHERE supplier_ice='$devis_supplier_ice'";
     $get_part_query = mysqli_query($connection, $query);
     confirm($get_part_query);
-    if(mysqli_num_rows($get_part_query)!=0){
+    if (mysqli_num_rows($get_part_query) != 0) {
 
         while ($row = mysqli_fetch_assoc($get_part_query)) {
             $part_adresse = $row['supplier_adresse'];
             $part_city = $row['supplier_city'];
-            
         }
-
-    }else{
-    $query = "SELECT * FROM clients WHERE client_ice='$devis_supplier_ice'";
-    $get_part_query = mysqli_query($connection, $query);
-    confirm($get_part_query);
-    if(mysqli_num_rows($get_part_query)!=0){
-    while ($row = mysqli_fetch_assoc($get_part_query)) {
-        $part_adresse = $row['client_adresse'];
-        $part_city = $row['client_city'];
-        
+    } else {
+        $query = "SELECT * FROM clients WHERE client_ice='$devis_supplier_ice'";
+        $get_part_query = mysqli_query($connection, $query);
+        confirm($get_part_query);
+        if (mysqli_num_rows($get_part_query) != 0) {
+            while ($row = mysqli_fetch_assoc($get_part_query)) {
+                $part_adresse = $row['client_adresse'];
+                $part_city = $row['client_city'];
+            }
+        }
     }
-}
-    }
-    
-
-
 }
 ?>
 
@@ -83,7 +76,7 @@ if (isset($_GET['d_id'])) {
         <thead>
             <tr>
                 <th>
-                    <h1 class="center" style="font-size:60px">Facture</h1>
+                    <h1 class="center" style="font-size:60px">Devis</h1>
                 </th>
                 <th><img style="width:100px; margin-left:65%;" src="logo.jpg" alt=""></th>
             </tr>
@@ -108,8 +101,8 @@ if (isset($_GET['d_id'])) {
             <tr>
                 <th><?php echo $devis_supplier_ice ?></th>
                 <th><?php echo $part_city ?></th>
-                
-                
+
+
             </tr>
         </tbody>
     </table><br><br>
@@ -120,8 +113,8 @@ if (isset($_GET['d_id'])) {
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Quantity</th>
+                <th>Produit</th>
+                <th>Quantité</th>
                 <th>Prix</th>
             </tr>
         </thead>
@@ -138,7 +131,7 @@ if (isset($_GET['d_id'])) {
                 $devis_produit_label = $row['devis_produit_label'];
                 $devis_produit_q = $row['devis_produit_q'];
                 $devis_totale = $row['devis_totale'];
-                
+
 
                 echo "<tr>";
                 echo "<td><b>$devis_produit_label</b></td>";
@@ -146,8 +139,6 @@ if (isset($_GET['d_id'])) {
                 echo "<td>$devis_totale</td>";
 
                 echo "</tr>";
-
-            
             }
 
 
@@ -160,7 +151,7 @@ if (isset($_GET['d_id'])) {
 
         </tbody>
     </table>
-            <p style="margin-left:80%;font-size:20px;">Totale :<?php echo $devis_totale;?></p>
+    <p style="margin-left:80%;font-size:20px;">Totale :<?php echo $devis_totale; ?></p>
     <footer style="margin-top:60%;">
         <p>our company name</p>
         <p>rue 6 Octobre -ex Convention, q. Racine, Grand Casablanca</p>

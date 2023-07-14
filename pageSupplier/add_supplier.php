@@ -45,8 +45,8 @@ if(isset($_POST['add_supplier'])){
        
             
             <div class="form-group">
-                <label for="title">Prénom</label>
-                <input class="form-control"  type="text" placeholder="Prénom" name="supplier_ice" aria-describedby="basic-addon1"/>
+                <label for="title">ICE</label>
+                <input class="form-control"  type="text" placeholder="ICE" name="supplier_ice" aria-describedby="basic-addon1"/>
             </div>
             <hr class="hr" />
             <div class="form-group">

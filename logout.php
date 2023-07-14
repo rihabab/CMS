@@ -6,6 +6,6 @@
 $_SESSION['user_email']=null;
 
 
-header("Location: ../index.php");
+header("Location: login.php");
 
 ?>

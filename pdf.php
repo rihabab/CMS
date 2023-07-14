@@ -1,11 +1,12 @@
-<?php include "includes/db.php"?>
-<?php ob_start()?>
-<?php include "includes/functions.php"?>
+<?php include "includes/db.php" ?>
+<?php ob_start() ?>
+<?php include "includes/functions.php" ?>
 
-<?php 
+<?php
 
 
 require __DIR__ . "/vendor/autoload.php";
+
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
@@ -17,31 +18,39 @@ use Dompdf\Options;
 
 
 
-$options=new Options;
+$options = new Options;
 $options->setChroot(__DIR__);
 $options->setIsRemoteEnabled(true);
 
 
-$name = $_POST["facture_part_nom"];
-$ice = $_POST["facture_part_ice"];
+$dompdf = new Dompdf($options);
 
 
-$dompdf=new Dompdf($options);
+if (
+    isset($_GET["f_id"])
+    && isset($_GET["tva"]) && isset($_GET["description"])
+) {
 
+    $f_id = $_GET["f_id"];
 
-if(isset($_GET["f_id"])){
-    $f_id=$_GET["f_id"];
-    $html = file_get_contents("http://localhost/stage/template.php?f_id=$f_id");
+    $tva = $_GET["tva"];
+    $description = $_GET["description"];
+    
+
+    $html = file_get_contents("http://localhost/stage/template.php?f_id=$f_id&tva=$tva&description=$description");
+    $dompdf->loadHtml($html);
+    //$dompdf->loadHtmlFile("template.html");
+    $dompdf->render();
+    $dompdf->stream("facture.pdf");
+} else {
+    header("Location: facture.php");
 }
 
 
 
 
 
-    $dompdf->loadHtml($html);
-    //$dompdf->loadHtmlFile("template.html");
-    $dompdf->render();
-    $dompdf->stream("facture.pdf");
+
 
 
 ?>

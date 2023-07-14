@@ -62,7 +62,7 @@ if(isset($_SESSION['user_email'])){
         echo "<td><b><a href='devis.php?source=view_profile&d_id={$devis_id}' style='color: black;'>$devis_supplier_nom</a></b></td>";
         echo "<td>$devis_supplier_ice</td>";
         echo "<td>$devis_date</td>";
-        echo "<td>$devis_produit_label MAD</td>";
+        echo "<td>$devis_produit_label </td>";
         echo "<td>$devis_totale MAD</td>";
         echo "<td><a href='devis.php?source=edit&d_id={$devis_id}'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>";
         echo "<td><a href='devis.php?source=view&delete={$devis_id}'><i class='fa fa-trash-o' aria-hidden='true'></i></a></td>";

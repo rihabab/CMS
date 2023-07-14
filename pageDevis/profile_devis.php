@@ -99,12 +99,13 @@ if (isset($_POST['create_facture'])) {
 
     confirm($create_facture_query);
 
-    $query = "INSERT INTO facturetitre(facture_titre_nom,facture_titre_ice, facture_titre_date,facture_status) ";
-    $query .= "VALUES('{$facture_part_nom}','{$facture_part_ice}','{$facture_date}','{$facture_statut}') ";
+    $query = "INSERT INTO facturetitre(facture_titre_nom,facture_titre_ice, facture_titre_date,facture_status,facture_devis_id) ";
+    $query .= "VALUES('{$facture_part_nom}','{$facture_part_ice}','{$facture_date}','{$facture_statut}', {$the_devis_id}) ";
 
     $create_facturetitre_query = mysqli_query($connection, $query);
 
     confirm($create_facturetitre_query);
+    header("Location: facture.php?source=view");
 }
 
 
@@ -233,20 +234,6 @@ if (isset($_POST['create_facture'])) {
 
                         <form action="" method="post" enctype="multipart/form-data">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                             <div class="row mb-3">
                                 <div class="col-md-5">
                                     <label for="post_tags">Fournisseur</label>
@@ -358,19 +345,20 @@ if (isset($_POST['create_facture'])) {
 
 
         <!-- Button trigger modal -->
-        <div class="form-group">
+        <div class="row mb-3">
+        <div style="margin-left:15px;">
             <input class="btn btn-primary" type="submit" name="create_facture" value="Generer une facture" data-toggle="modal" data-target="#exampleModal">
         </div>
 
-        <div class="form-group">
-        <button onclick="printFiledev(<?php echo $the_devis_id?>)" class="btn btn-primary">Print</button>
+        <div style="margin-left:10px;">
+            <button onclick="printFiledev(<?php echo $the_devis_id ?>)" class="btn btn-primary">Imprimer</button>
 
         </div>
-        <div class="form-group">
-            <a href="pdf_dev.php?d_id=<?php echo $the_devis_id; ?>" class="btn btn-primary" type="submit"  name="genpdf"value="Génerer">Génerer</a>
+        <div style="margin-left:10px;">
+            <a href="pdf_dev.php?d_id=<?php echo $the_devis_id; ?>" class="btn btn-primary" type="submit" name="genpdf" value="Génerer">Génerer</a>
 
         </div>
-
+        </div>
 
     </form>
 

@@ -131,13 +131,13 @@ function newElement() {
 
 }
 
-function printFile(source) {
-  w = window.open('template.php?f_id='+source);
+function printFile(source,tva,description) {
+  w = window.open('template.php?f_id='+source+'&tva=' + tva + '&description=' + description);
   w.print();
 }
 
 
 function printFiledev(source) {
-  w = window.open('templatedev.php?d_id='+source);
+  w = window.open('templatedev.php?d_id='+source+'&tva=' + tva + '&description=' + description);
   w.print();
 }

@@ -28,7 +28,8 @@ if (isset($_GET['f_id'])) {
     </ol>
     <hr class="hr" />
 
-    <form action="pdf.php?f_id=<?php echo $the_facture_id ;?>" method="post" enctype="multipart/form-data">
+    <!-- <form action="pdf.php?f_id=<?php echo $the_facture_id; ?>" method="post" enctype="multipart/form-data"> -->
+    <form action="" method="post" enctype="multipart/form-data">
 
 
 
@@ -55,7 +56,7 @@ if (isset($_GET['f_id'])) {
         <?php
 
         $emptyArray = [];
-        
+
 
         $query = "SELECT * FROM facture WHERE facture_part_nom='$facture_titre_nom' AND facture_date='$facture_titre_date' ";
         $get_facture_query = mysqli_query($connection, $query);
@@ -109,7 +110,6 @@ if (isset($_GET['f_id'])) {
     ";
 
             $j++;
-            
         }
 
 
@@ -137,22 +137,137 @@ if (isset($_GET['f_id'])) {
 
         </div>
 
+        <!-- Modal -->
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" style="display:flex;justify-content:center;">
+                <div class="modal-content" style="width:500px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                        <div class="container-fluid px-4">
+
+                            <?php
+                            if (isset($_POST['f_facture'])) {
+                                $tva = $_POST['tva'];
+                                $description = $_POST['description'];
+                                $description = explode(" ", $description);
+
+                                $description = implode(",", $description);
+
+                                header("Location: pdf.php?f_id=$the_facture_id&tva=$tva&description=$description");
+                            }
+
+                            if (isset($_POST['p_facture'])) {
+                                $tva = $_POST['tva'];
+                                $description = $_POST['description'];
+                                $description = explode(" ", $description);
+
+                                $description = implode(",", $description);
+
+
+                                echo "<script>
+                                        //JavaScript function to be called
+                                        function printFile(source,tva,description) {
+                                            w = window.open('template.php?f_id='+encodeURIComponent(source)+'&tva='+encodeURIComponent(tva)+'&description='+encodeURIComponent(description));
+                                            w.print();
+                                          }
+                                        
+                                        // Call the function
+                                        printFile($the_facture_id,$tva,'$description');
+                                    </script>";
+                            }
+
+
+                            ?>
+
+                            <form action="/" method="post" enctype="multipart/form-data">
+
+                                <div class="row mb-3">
+
+                                    <label for="post_tags">TVA</label>
+                                    <div class="input-group mb-3">
+                                        <input type="int" name="tva" value="20">
+                                    </div>
+
+
+                                </div>
+                                <div class="row mb-3">
+
+                                    <label for="post_tags">Description</label>
+                                    <div class="input-group mb-3">
+                                        <textarea name="description" rows="4" cols="100" maxlength="200" placeholder="Description"></textarea>
+                                    </div>
+
+
+                                </div>
 
 
 
 
-        <div class="form-group">
-            <input class="btn btn-primary" type="submit"  value="Génerer">
+                                <div class="form-group">
+                                    <input class="btn btn-primary" type="submit" name="f_facture" value="Generer une facture" data-toggle="modal" data-target="#exampleModal">
+                                </div>
+                                <!-- 
+                                                              
+                                <div style="margin-left:15px;">
+                                    <button onclick="printFile(<?php echo $the_facture_id ?>,20,'description')" class="btn btn-primary" type="submit" name="p_facture">Imprimer</button>
 
+                                </div>  -->
+
+                                <div style="margin-left:15px;">
+                                    <button  class="btn btn-primary" type="submit" name="p_facture">Imprimer</button>
+
+                                </div>
+
+
+
+                            </form>
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        
-        <div class="form-group">
-        <button onclick="printFile(<?php echo $the_facture_id?>)" class="btn btn-primary">Print</button>
+        <!-- Fin modal -->
 
+        <!-- Button trigger modal -->
+        <div class="row mb-3">
+            <div style="margin-left:15px;">
+                <input class="btn btn-primary" type="submit" name="create_facture" value="Generer une facture" data-toggle="modal" data-target="#exampleModal">
+            </div>
         </div>
 
+        <div class="row mb-3">
 
+            <div style="margin-left:15px;">
+                <input class="btn btn-primary" type="submit" value="Génerer">
+
+            </div>
+
+
+            <div style="margin-left:15px;">
+                <button onclick="printFile(<?php echo $the_facture_id ?>)" class="btn btn-primary">Imprimer</button>
+
+            </div>
+
+        </div>
 
 
     </form>
