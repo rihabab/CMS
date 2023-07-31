@@ -100,18 +100,25 @@ function newElement() {
   '<input type="text" class="form-control" name="facture_label_produit'+counter + '">' +
   '</div>' +
   '</div>' +
-  '<div class="col-md-3">' +
+  '<div class="col-md-2">' +
   '<label for="users">Prix du produit</label>' +
   '<div class="input-group mb-3">' +
   '<input type="int" class="form-control" name="facture_produit_prix'+counter + '">' +
   '</div>' +
   '</div>' +
-  '<div class="col-md-3">' +
-  '<label for="users">Quantité du produit</label>' +
-  '<div class="input-group mb-3">' +
-  '<input type="int" class="form-control" name="facture_q'+counter + '">' +
-  '</div>' +
-  '</div>' + '</div>';
+  '<div class="col-md-2">' +
+    '<label for="users">Quantité du produit</label>' +
+    '<div class="input-group mb-3">' +
+    '<input type="int" class="form-control" name="facture_q'+counter + '">' +
+    '</div>' +
+  '</div>' + '<div class="col-md-2">'+
+  '<label for="users">unité</label>'+
+  '<select name="facture_q_type'+counter + '" id="" class="form-control" aria-label="Default select example" aria-describedby="basic-addon1">'+
+      '<option value="unité">unité</option>' +
+      '<option value="Kg">Kg</option>' +
+      '<option value="L">L</option>'+
+  '</select>'+
+'</div>'+'</div>';
 
 
   counter++;

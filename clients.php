@@ -44,7 +44,7 @@
                        include 'pageClient/edit_client2.php';
                        break;
 
-                       case 'view_supplier';
+                       case 'view_profile';
                        include 'pageClient/profile_client.php';
                        break;
                    

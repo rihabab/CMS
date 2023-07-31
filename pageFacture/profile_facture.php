@@ -70,7 +70,7 @@ if (isset($_GET['f_id'])) {
             $facture_label_produit = $row['facture_label_produit'];
             $facture_produit_prix = $row['facture_produit_prix'];
             $facture_q = $row['facture_q'];
-
+            $facture_q_type = $row['facture_q_type'];
 
             echo "
     
@@ -84,19 +84,28 @@ if (isset($_GET['f_id'])) {
                 </div>
 
             </div>
-            <div class='col-md-3'>
+            <div class='col-md-2'>
                 <label for='users'>Prix du produit</label>
                 <div class='input-group mb-3'>
 
                     <input type='int' class='form-control' name='facture_produit_prix$j' value='$facture_produit_prix'>
                 </div>
             </div>
-            <div class='col-md-3'>
+            <div class='col-md-2'>
                 <label for='users'>Quantité du produit</label>
                 <div class='input-group mb-3'>
 
                     <input type='int' class='form-control' name='facture_q$j'  value='$facture_q'>
                 </div>
+            </div>
+            <div class='col-md-2'>
+                <label for='user'>unité</label>
+                <select name='facture_q_type$j'  class='form-control' aria-label='Default select example' aria-describedby='basic-addon1'>
+                    <option value='$facture_q_type'>$facture_q_type</option>
+                    <option value='unité'>unité</option>
+                    <option value='Kg'>Kg</option>
+                    <option value='L'>L</option>
+                </select>
             </div>
     </div>
     

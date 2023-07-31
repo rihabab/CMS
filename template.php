@@ -159,6 +159,7 @@ if (isset($_GET['f_id'])) {
             <tr style="background-color:rgb(14, 96, 134);color:white;">
                 <th>Produit</th>
                 <th>Quantité</th>
+                <th>Unité</th>
                 <th>Prix unitaire</th>
                 <th>Prix</th>
             </tr>
@@ -180,13 +181,15 @@ if (isset($_GET['f_id'])) {
                 //echo $row['facture_id'];
                 $facture_label_produit = $row['facture_label_produit'];
                 $facture_produit_prix = $row['facture_produit_prix'];
+                $facture_q_type = $row['facture_q_type'];
                 $facture_q = $row['facture_q'];
                 $facture_totale = $row['facture_totale'];
                 $facture_totalet += $facture_totale;
 
                 echo "<tr>";
                 echo "<td><b>$facture_label_produit</b></td>";
-                echo "<td >$facture_q</td>";
+                echo "<td >$facture_q </td>";
+                echo "<td >$facture_q_type</td>";
                 echo "<td >$facture_produit_prix ,00</td>";
                 echo "<td>$facture_totale ,00</td>";
 

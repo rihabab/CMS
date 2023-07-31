@@ -3,22 +3,33 @@
 <?php include "includes/functions.php" ?>
 
 <?php
+$j = 0;
+$facture_totalet = 0;
+if (isset($_GET['f_id'])) {
 
-if (isset($_GET['d_id'])) {
+
+    $tva=$_GET['tva'];
+    $description=$_GET['description'];
+    $description = explode(",", $description); // Split the string into an array of words
+
+    $description = implode(" ", $description);
+
+
     $part_adresse = "undef";
     $part_city = "undef";
-    $the_devis_id = $_GET['d_id'];
-
-    $query = "SELECT * FROM devis WHERE devis_id='$the_devis_id'";
-    $get_devis_query = mysqli_query($connection, $query);
-    confirm($get_devis_query);
-    while ($row = mysqli_fetch_assoc($get_devis_query)) {
-        $devis_supplier_name = $row['devis_supplier_name'];
-        $devis_supplier_ice = $row['devis_supplier_ice'];
-        $devis_date = $row['devis_date'];
+    $the_facture_id = $_GET['f_id'];
+    $query = "SELECT * FROM facturetitre WHERE facture_titre_id='$the_facture_id'";
+    $get_facturetitre_query = mysqli_query($connection, $query);
+    confirm($get_facturetitre_query);
+    while ($row = mysqli_fetch_assoc($get_facturetitre_query)) {
+        $facture_titre_nom = $row['facture_titre_nom'];
+        $facture_titre_ice = $row['facture_titre_ice'];
+        $facture_titre_date = $row['facture_titre_date'];
+        $facture_status = $row['facture_status'];
+        $facture_devis_id=$row['facture_devis_id'];
     }
 
-    $query = "SELECT * FROM suppliers WHERE supplier_ice='$devis_supplier_ice'";
+    $query = "SELECT * FROM suppliers WHERE supplier_ice='$facture_titre_ice'";
     $get_part_query = mysqli_query($connection, $query);
     confirm($get_part_query);
     if (mysqli_num_rows($get_part_query) != 0) {
@@ -28,7 +39,7 @@ if (isset($_GET['d_id'])) {
             $part_city = $row['supplier_city'];
         }
     } else {
-        $query = "SELECT * FROM clients WHERE client_ice='$devis_supplier_ice'";
+        $query = "SELECT * FROM clients WHERE client_ice='$facture_titre_ice'";
         $get_part_query = mysqli_query($connection, $query);
         confirm($get_part_query);
         if (mysqli_num_rows($get_part_query) != 0) {
@@ -62,31 +73,12 @@ if (isset($_GET['d_id'])) {
         footer {
             text-align: center;
             font-style: italic;
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            padding: 10px;
         }
 
         #def {
             display: flex;
             flex-direction: row;
             color: red;
-        }
-
-        .tablet {
-            padding-inline: 10px;
-            border: 2px solid black;
-            margin-bottom: 10px;
-        }
-
-        .right {
-            margin-left: 20%;
-        }
-
-        .facture {
-            padding-top: 100px;
         }
     </style>
 </head>
@@ -98,34 +90,35 @@ if (isset($_GET['d_id'])) {
     <p>Casablanca</p>
     <p>Maroc</p>
 
-
-
-
-
-
-
     <div style="display:flex; flex-direction:row;">
         <table>
             <tbody>
                 <td>
                     <div class="facture">
-                        <h4>Devis <?php echo $the_devis_id ?>/2023</h4>
-                        <h6>Date du devis :</h6>
-                        <p><?php echo $devis_date ?></p>
+                        <h4>Facture <?php echo $the_facture_id ?>/2023</h4>
+                        <h6>Date de la facture :</h6>
+                        <p><?php echo $facture_titre_date ?></p>
                     </div>
                 </td>
                 <td>
                     <div class="right">
                         <div class="tablet">
-                            <p><?php echo $devis_supplier_name ?></p>
-                            <p><?php echo $devis_supplier_ice ?></p>
+                            <p><?php echo $facture_titre_nom ?></p>
+                            <p><?php echo $facture_titre_ice ?></p>
                         </div>
                         <div>Adresse de facturation :</div>
                         <div class="tablet">
                             <?php echo $part_adresse ?>
                         </div>
                         <div class="tablet">
-                            Devis N <?php echo $the_devis_id; ?>
+                            Devis N <?php 
+                            if($facture_devis_id=null){
+                                echo "XX" ;
+                            }else{
+                                echo $the_facture_id;
+                            }
+                            
+                            ?>
                         </div>
                         <div class="tablet">
                             Bon de commande N XX
@@ -140,23 +133,7 @@ if (isset($_GET['d_id'])) {
     </div><br>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <h6>Description:<?php echo $description ?></h6><br><br>
 
     <table class="table table-bordered">
         <thead>
@@ -171,48 +148,54 @@ if (isset($_GET['d_id'])) {
         <tbody>
             <?php
 
-            $query = "SELECT * FROM devis WHERE devis_supplier_name='$devis_supplier_name'  ";
+            $emptyArray = [];
+
+
+            $query = "SELECT * FROM facture WHERE facture_part_nom='$facture_titre_nom' AND facture_date='$facture_titre_date' ";
             $get_facture_query = mysqli_query($connection, $query);
             confirm($get_facture_query);
 
 
 
             while ($row = mysqli_fetch_assoc($get_facture_query)) {
-                $devis_produit_label = $row['devis_produit_label'];
-                $devis_produit_type = $row['devis_produit_type'];
-                $devis_produit_prix = $row['devis_produit_prix'];
-                $devis_produit_q = $row['devis_produit_q'];
-                $devis_totale = $row['devis_totale'];
-                
-
+                array_push($emptyArray, $row['facture_id']);
+                //echo $row['facture_id'];
+                $facture_label_produit = $row['facture_label_produit'];
+                $facture_produit_prix = $row['facture_produit_prix'];
+                $facture_q_type = $row['facture_q_type'];
+                $facture_q = $row['facture_q'];
+                $facture_totale = $row['facture_totale'];
+                $facture_totalet += $facture_totale;
 
                 echo "<tr>";
-                echo "<td><b>$devis_produit_label</b></td>";
-                echo "<td >$devis_produit_q</td>";
-                echo "<td >$devis_produit_type</td>";
-                echo "<td >$devis_produit_prix</td>";
-                echo "<td>$devis_totale</td>";
+                echo "<td><b>$facture_label_produit</b></td>";
+                echo "<td >$facture_q </td>";
+                echo "<td >$facture_q_type</td>";
+                echo "<td >$facture_produit_prix ,00</td>";
+                echo "<td>$facture_totale ,00</td>";
 
                 echo "</tr>";
+
+                $j++;
             }
 
 
             ?>
-
-
-
-
-
-
         </tbody>
     </table>
     <table style="margin-left:70%; width:200px;">
         <tbody>
             <tr>
-                <th style="background-color: rgb(29, 136, 202);color:white;border: 2px solid white;">
-                    <h6>Total :</h6>
-                </th>
-                <th style="text-align:end;font-family: 'Courier New', Courier, monospace;font-size:15px;"><?php echo $devis_totale; ?> MAD</th>
+                <th style="background-color: rgb(29, 136, 202);color:white;border: 2px solid white;"> Total HT </th>
+                <th style="text-align:end;font-family: 'Courier New', Courier, monospace;"><?php echo $facture_totalet; ?>,00 MAD</th>
+            </tr>
+            <tr>
+                <th style="background-color: rgb(29, 136, 202);color:white;border: 2px solid white;">TVA <?php echo $tva; ?>%</th>
+                <th style="text-align:end;font-family: 'Courier New', Courier, monospace;"><?php echo $newp=$facture_totalet*$tva ; ?> MAD</th>
+            </tr>
+            <tr>
+                <th style="background-color: rgb(29, 136, 202);color:white;border: 2px solid white;"><h6>Total TTC</h6></th>
+                <th style="text-align:end;font-family: 'Courier New', Courier, monospace;font-size:15px;"><?php echo $newp+$facture_totalet; ?> MAD</th>
             </tr>
         </tbody>
     </table>
@@ -220,20 +203,11 @@ if (isset($_GET['d_id'])) {
 
 
 
-
-
-
-
     <footer>
         <p>TIC ESCORT; RIB: .............. ; Patente : ............ ; RC : ....... ; CNSS : ............... ; IF: ......... ;
-            ICE : ..... ; E-mail: ......;
-            Tél: ........</p>
+ICE : ..... ; E-mail: ......;
+Tél: ........</p>
     </footer>
-
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>

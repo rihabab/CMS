@@ -37,7 +37,7 @@ if(isset($_GET["d_id"])){
     $dompdf->loadHtml($html);
     //$dompdf->loadHtmlFile("template.html");
     $dompdf->render();
-    $dompdf->stream("facture.pdf");
+    $dompdf->stream("devis.pdf");
 
 
 ?>

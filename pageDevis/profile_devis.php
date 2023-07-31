@@ -11,6 +11,7 @@ if (isset($_GET['d_id'])) {
         $devis_date = $row['devis_date'];
         $devis_produit_label = $row['devis_produit_label'];
         $devis_produit_prix = $row['devis_produit_prix'];
+        $devis_produit_type = $row['devis_produit_type'];
         $devis_produit_q = $row['devis_produit_q'];
         $devis_totale = $row['devis_totale'];
     }
@@ -24,52 +25,6 @@ if (isset($_GET['d_id'])) {
 
 
 
-<?php
-
-// if (isset($_POST['create_facture'])) {
-
-
-//     $devis_supplier_name = $_POST['devis_fournisseur_name'];
-//     $devis_supplier_ice = $_POST['devis_fournisseur_ice'];
-//     $devis_date = $_POST['devis_date'];
-//     $devis_produit_label = $_POST['devis_label_produit'];
-//     $devis_produit_prix = $_POST['devis_produit_prix'];
-//     $devis_q = $_POST['devis_q'];
-//     $devis_totale = $devis_produit_prix * $devis_q;
-
-
-
-//     $query = "INSERT INTO facture(facture_part_nom,facture_part_ice, facture_statut,facture_date,facture_label_produit,facture_produit_prix,facture_q,facture_totale) ";
-//     $query .= "VALUES('{$devis_supplier_name}','{$devis_supplier_ice}','non_payée','{$devis_date}','{$devis_produit_label}',{$devis_produit_prix}, {$devis_q},{$devis_totale}) ";
-
-//     $create_facture_query = mysqli_query($connection, $query);
-
-//     confirm($create_facture_query);
-
-
-
-
-//     $query  = "insert devis SET ";
-//     $query .= "devis_supplier_name = '{$devis_supplier_name}', ";
-//     $query .= "devis_supplier_ice       = '{$devis_supplier_ice}', ";
-//     $query .= "devis_date       = '{$devis_date}', ";
-//     $query .= "devis_produit_label      = '{$devis_produit_label}', ";
-//     $query .= "devis_produit_prix      = '{$devis_produit_prix}', ";
-//     $query .= "devis_produit_q        = {$devis_produit_q}, ";
-//     $query .= "devis_totale        = {$devis_totale} ";
-//     $query .= "WHERE devis_id   = $the_devis_id ";
-
-
-//     $update_devis_query = mysqli_query($connection, $query);
-
-//     confirm($update_devis_query);
-
-//     header("Location: devis.php?source=view");
-// }
-
-
-
-?>
 
 <?php
 
@@ -88,12 +43,13 @@ if (isset($_POST['create_facture'])) {
 
     $facture_label_produit = $_POST['facture_label_produit'];
     $facture_produit_prix = $_POST['facture_produit_prix'];
+    $facture_q_type = $_POST['facture_q_type'];
     $facture_q = $_POST['facture_q'];
     $facture_totale = $facture_q * $facture_produit_prix;
 
 
-    $query = "INSERT INTO facture(facture_part_nom,facture_part_ice, facture_statut,facture_date,facture_label_produit,facture_produit_prix,facture_q,facture_totale) ";
-    $query .= "VALUES('{$facture_part_nom}','{$facture_part_ice}','{$facture_statut}','{$facture_date}','{$facture_label_produit}',{$facture_produit_prix}, {$facture_q},{$facture_totale}) ";
+    $query = "INSERT INTO facture(facture_part_nom,facture_part_ice, facture_statut,facture_date,facture_label_produit,facture_produit_prix,facture_q_type,facture_q,facture_totale) ";
+    $query .= "VALUES('{$facture_part_nom}','{$facture_part_ice}','{$facture_statut}','{$facture_date}','{$facture_label_produit}',{$facture_produit_prix},'{$facture_q_type}', {$facture_q},{$facture_totale}) ";
 
     $create_facture_query = mysqli_query($connection, $query);
 
@@ -127,7 +83,21 @@ if (isset($_POST['create_facture'])) {
     </ol>
     <hr class="hr" />
 
-    <form action="" method="post" enctype="multipart/form-data">
+
+
+
+    <?php
+            // if (isset($_POST['p_facture'])) {
+            //     echo "PASS";
+            //     echo ;
+            // }
+
+
+            ?>
+
+
+
+
 
         <div class="row mb-3">
             <div class="col-md-5">
@@ -147,36 +117,7 @@ if (isset($_POST['create_facture'])) {
         </div>
 
 
-        <!-- 
-
-        <div class="todo">
-            <div id="myDIV" class="header">
-                <h2>My To Do List</h2>
-                <input type="text" id="myInput" placeholder="Title...">
-                <span onclick="newElement()" class="addBtn">Add</span>
-            </div>
-
-
-
-            <ul id="myUL">
-
-            </ul>
-        </div> -->
-
-
-
-
         <div id="myUL" style="padding:0px; margin:0px;">
-
-
-
-
-
-
-
-
-
-
 
             <div class="row mb-3 produit">
 
@@ -188,25 +129,45 @@ if (isset($_POST['create_facture'])) {
                     </div>
 
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="users">Prix du produit</label>
                     <div class="input-group mb-3">
 
                         <input type="int" class="form-control" name="devis_produit_prix" value="<?php echo $devis_produit_prix; ?>">
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label for="users">Quantité du produit</label>
                     <div class="input-group mb-3">
 
                         <input type="int" class="form-control" name="devis_q" value="<?php echo $devis_produit_q; ?>">
                     </div>
                 </div>
+                <div class="col-md-2">
+                    <label for="users">unité</label>
+                    <select name="facture_q_type" class="form-control" aria-label="Default select example" aria-describedby="basic-addon1">
+                        <option value='<?php echo $devis_produit_type; ?>'><?php echo $devis_produit_type; ?></option>
+                        <option value='unité'>unité</option>
+                        <option value='Kg'>Kg</option>
+                        <option value='L'>L</option>
+                    </select>
+                </div>
             </div>
 
         </div>
 
 
+
+        <div class="row mb-3">
+            <div class="col-md-2">
+                <label for="users">Date de la devis</label>
+                <div class="input-group mb-3">
+                    <input type="date" class="form-control" name="devis_date" value="<?php echo $devis_date; ?>">
+                </div>
+
+            </div>
+
+        </div>
 
 
 
@@ -218,7 +179,7 @@ if (isset($_POST['create_facture'])) {
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document" style="margin-left:400px;">
-                <div class="modal-content" style="width:800px;">
+                <div class="modal-content" style="width:1000px;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -261,7 +222,7 @@ if (isset($_POST['create_facture'])) {
                                     </div>
 
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label for="users">Prix du produit</label>
                                     <div class="input-group mb-3">
 
@@ -274,6 +235,15 @@ if (isset($_POST['create_facture'])) {
 
                                         <input type="int" class="form-control" name="facture_q" value="<?php echo $devis_produit_q; ?>">
                                     </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="users">unité</label>
+                                    <select name="facture_q_type" class="form-control" aria-label="Default select example" aria-describedby="basic-addon1">
+                                        <option value='<?php echo $devis_produit_type; ?>'><?php echo $devis_produit_type; ?></option>
+                                        <option value='unité'>unité</option>
+                                        <option value='Kg'>Kg</option>
+                                        <option value='L'>L</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -330,36 +300,41 @@ if (isset($_POST['create_facture'])) {
 
 
 
-        <div class="row mb-3">
-            <div class="col-md-2">
-                <label for="users">Date de la devis</label>
-                <div class="input-group mb-3">
-                    <input type="date" class="form-control" name="devis_date" value="<?php echo $devis_date; ?>">
-                </div>
-
-            </div>
-
-        </div>
-
 
 
 
         <!-- Button trigger modal -->
         <div class="row mb-3">
-        <div style="margin-left:15px;">
-            <input class="btn btn-primary" type="submit" name="create_facture" value="Generer une facture" data-toggle="modal" data-target="#exampleModal">
+            <div style="margin-left:15px;">
+                <input class="btn btn-primary" type="submit" name="create_facture" value="Generer une facture" data-toggle="modal" data-target="#exampleModal">
+            </div>
+
+
+
+            <!--             
+            <div style="margin-left:10px;">
+                <button onclick="printFiledev(<?php echo $the_devis_id ?>)" class="btn btn-primary">Imprimer</button>
+
+            </div> -->
+
+
+
+            <div style="margin-left:10px;">
+                <a href="pdf_dev.php?d_id=<?php echo $the_devis_id; ?>" class="btn btn-primary" type="submit" name="genpdf" value="Génerer">Génerer</a>
+
+            </div>
+
+
+            
+
+
+
+            <div style="margin-left:15px;">
+                <button class="btn btn-primary" name="p_facture" onclick="printFiledev(<?php echo $the_devis_id; ?>)">Imprimer</button>
+
+            </div>
         </div>
 
-        <div style="margin-left:10px;">
-            <button onclick="printFiledev(<?php echo $the_devis_id ?>)" class="btn btn-primary">Imprimer</button>
 
-        </div>
-        <div style="margin-left:10px;">
-            <a href="pdf_dev.php?d_id=<?php echo $the_devis_id; ?>" class="btn btn-primary" type="submit" name="genpdf" value="Génerer">Génerer</a>
-
-        </div>
-        </div>
-
-    </form>
 
 </div>

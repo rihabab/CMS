@@ -1,7 +1,6 @@
-
-
-
 <?php
+
+// getting the info for the page from the backend
 if (isset($_GET['f_id'])) {
     $the_facture_id = $_GET['f_id'];
     $query = "SELECT * FROM facturetitre WHERE facture_titre_id='$the_facture_id'";
@@ -35,7 +34,7 @@ if (isset($_GET['f_id'])) {
 
 
 
-        
+
         <div class="row mb-3">
             <div class="col-md-5">
                 <label for="post_tags">Nom</label>
@@ -47,7 +46,7 @@ if (isset($_GET['f_id'])) {
             <div class="col-md-5">
                 <label for="post_tags">ICE</label>
                 <div class="input-group mb-3">
-                    <input type="int" class="form-control" name="facture_part_ice" value="<?php echo $facture_titre_ice?>" >
+                    <input type="int" class="form-control" name="facture_part_ice" value="<?php echo $facture_titre_ice ?>">
                 </div>
 
             </div>
@@ -64,7 +63,7 @@ if (isset($_GET['f_id'])) {
         $get_facture_query = mysqli_query($connection, $query);
         confirm($get_facture_query);
 
-
+        // desplaying the products
 
         while ($row = mysqli_fetch_assoc($get_facture_query)) {
             array_push($emptyArray, $row['facture_id']);
@@ -72,6 +71,7 @@ if (isset($_GET['f_id'])) {
             $facture_label_produit = $row['facture_label_produit'];
             $facture_produit_prix = $row['facture_produit_prix'];
             $facture_q = $row['facture_q'];
+            $facture_q_type = $row['facture_q_type'];
 
 
             echo "
@@ -86,20 +86,29 @@ if (isset($_GET['f_id'])) {
                 </div>
 
             </div>
-            <div class='col-md-3'>
+            <div class='col-md-2'>
                 <label for='users'>Prix du produit</label>
                 <div class='input-group mb-3'>
 
                     <input type='int' class='form-control' name='facture_produit_prix$j' value='$facture_produit_prix'>
                 </div>
             </div>
-            <div class='col-md-3'>
+            <div class='col-md-2'>
                 <label for='users'>Quantité du produit</label>
                 <div class='input-group mb-3'>
 
                     <input type='int' class='form-control' name='facture_q$j'  value='$facture_q'>
                 </div>
             </div>
+            <div class='col-md-2'>
+                    <label for='user'>unité</label>
+                    <select name='facture_q_type$j'  class='form-control' aria-label='Default select example' aria-describedby='basic-addon1'>
+                        <option value='$facture_q_type'>$facture_q_type</option>
+                        <option value='unité'>unité</option>
+                        <option value='Kg'>Kg</option>
+                        <option value='L'>L</option>
+                    </select>
+                </div>
         </div>
     
     
@@ -111,7 +120,6 @@ if (isset($_GET['f_id'])) {
     
     ";
             $j++;
-            
         }
 
 
@@ -165,8 +173,11 @@ if (isset($_GET['f_id'])) {
 
 <?php
 
+// updating the facture
+
+
 if (isset($_POST['update_facture'])) {
-    
+
     $facture_part_nom = $_POST['facture_part_nom'];
     $facture_part_ice = $_POST['facture_part_ice'];
     $facture_date = $_POST['facture_date'];
@@ -176,10 +187,7 @@ if (isset($_POST['update_facture'])) {
         $facture_statut = 'non-payée';
     }
 
-    echo $facture_part_nom;
-    echo $facture_part_ice;
-    echo $facture_date;
-   
+
     for ($i = 0; $i <= $j; $i++) {
 
         if (isset($_POST['facture_label_produit' . $i])) {
@@ -188,10 +196,11 @@ if (isset($_POST['update_facture'])) {
 
                 $facture_id = $emptyArray[$i];
 
-                echo $facture_label_produit = $_POST['facture_label_produit' . $i];
-                echo $facture_produit_prix = $_POST['facture_produit_prix' . $i];
-                echo $facture_q = $_POST['facture_q' . $i];
-                echo $facture_totale = $facture_q * $facture_produit_prix;
+                $facture_label_produit = $_POST['facture_label_produit' . $i];
+                $facture_produit_prix = $_POST['facture_produit_prix' . $i];
+                $facture_q = $_POST['facture_q' . $i];
+                $facture_q_type = $_POST['facture_q_type' . $i];
+                $facture_totale = $facture_q * $facture_produit_prix;
 
                 $query  = "UPDATE facture SET ";
                 $query .= "facture_part_nom = '{$facture_part_nom}', ";
@@ -200,10 +209,11 @@ if (isset($_POST['update_facture'])) {
                 $query .= "facture_date      = '{$facture_date}', ";
                 $query .= "facture_label_produit      = '{$facture_label_produit}', ";
                 $query .= "facture_produit_prix        = {$facture_produit_prix}, ";
+                $query .= "facture_q_type        = '{$facture_q_type}', ";
                 $query .= "facture_q        = {$facture_q}, ";
                 $query .= "facture_totale     = {$facture_totale}  ";
                 $query .= "WHERE facture_id   = {$facture_id} ";
-                echo "pass" ;
+               
 
                 $update_facture_query = mysqli_query($connection, $query);
 
@@ -227,8 +237,7 @@ if (isset($_POST['update_facture'])) {
     $update_facturetitre_query = mysqli_query($connection, $query);
 
     confirm($update_facturetitre_query);
-
-    header("Location: facture.php?source=view");
+    header("Refresh:0");
 }
 
 
